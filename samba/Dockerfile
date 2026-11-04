@@ -1,4 +1,4 @@
-ARG BUILD_FROM
+ARG BUILD_FROM=ghcr.io/home-assistant/base:3.24-2026.06.1
 FROM $BUILD_FROM
 
 # Add env
@@ -22,3 +22,9 @@ HEALTHCHECK --start-period=3s \
 
 ENV \
     S6_STAGE2_HOOK=/etc/s6-overlay/scripts/enable-check.sh
+
+LABEL \
+    org.opencontainers.image.title="Home Assistant App: Samba share" \
+    org.opencontainers.image.description="Expose Home Assistant folders with SMB/CIFS" \
+    org.opencontainers.image.source="https://github.com/home-assistant/app-samba" \
+    org.opencontainers.image.licenses="Apache License 2.0"
