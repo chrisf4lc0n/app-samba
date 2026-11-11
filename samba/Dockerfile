@@ -22,6 +22,7 @@ HEALTHCHECK --start-period=3s \
     CMD smbclient -L '\\localhost' -U '%' -m SMB3
 
 ENV \
+    LOG_FORMAT="{LEVEL}: {MESSAGE}" \
     S6_STAGE2_HOOK=/etc/s6-overlay/scripts/enable-check.sh
 
 LABEL \
