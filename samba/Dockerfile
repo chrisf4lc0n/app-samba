@@ -3,7 +3,7 @@ ARG BUILD_FROM=ghcr.io/home-assistant/base:3.24-2026.11.0@sha256:58422480a299b16
 FROM $BUILD_FROM
 
 # Add env
-ENV LANG C.UTF-8
+ENV LANG=C.UTF-8
 
 # Setup base
 RUN \
