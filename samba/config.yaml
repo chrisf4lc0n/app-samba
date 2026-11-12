@@ -32,6 +32,7 @@ options:
     - media
     - share
     - ssl
+  read_only_shares: []
   compatibility_mode: false
   apple_compatibility_mode: true
   netbios: true
@@ -56,6 +57,8 @@ schema:
   password: password
   workgroup: str
   enabled_shares:
+    - "match(^(?i:(local_apps|app_configs|addons|addon_configs|backup|config|media|share|ssl))$)"
+  read_only_shares:
     - "match(^(?i:(local_apps|app_configs|addons|addon_configs|backup|config|media|share|ssl))$)"
   compatibility_mode: bool
   apple_compatibility_mode: bool

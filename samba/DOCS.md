@@ -52,6 +52,7 @@ enabled_shares:
   - media
   - share
   - ssl
+read_only_shares: []
 compatibility_mode: false
 apple_compatibility_mode: true
 netbios: true
@@ -88,6 +89,23 @@ Change WORKGROUP to reflect your network needs.
 ### Option: `enabled_shares` (required)
 
 List of Samba shares that will be accessible. Any shares removed or commented out of the list will not be accessible.
+
+### Option: `read_only_shares` (optional)
+
+List of shares to expose as read-only. Files on these shares can still be
+browsed, opened and downloaded, but SMB clients cannot create, modify, rename
+or delete files on them. The restriction is enforced by the SMB server itself,
+independent of client behavior, which makes it useful for hosts that only need
+to read data (for example, a network backup target that should be able to
+download from `backup` or `config` but never write to it).
+
+Accepts the same values as `enabled_shares`. Shares listed here that are not
+also listed in `enabled_shares` have no effect. The legacy names `addons` and
+`addon_configs` are accepted and, as elsewhere, refer to the same directories
+as `local_apps` and `app_configs`; marking either name read-only applies to
+both.
+
+Defaults to an empty list, meaning all enabled shares are writable.
 
 ### Option: `allow_hosts` (required)
 

@@ -22,6 +22,14 @@ configuration:
       local_apps and app_configs for backward compatibility.
       Only these values are allowed;
       the configuration cannot be saved if any other value is in the list.
+  read_only_shares:
+    name: Read Only Shares
+    description: >-
+      List of shares to expose as read-only.
+      Files on these shares can be browsed, opened and downloaded,
+      but not created, modified, renamed or deleted by SMB clients.
+      Accepts the same values as enabled_shares;
+      shares that are not also enabled have no effect.
   compatibility_mode:
     name: Enable Compatibility Mode
     description: >-

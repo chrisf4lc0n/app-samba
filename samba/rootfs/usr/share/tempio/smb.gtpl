@@ -43,7 +43,7 @@
 {{ if (has "config" .enabled_shares) }}
 [config]
    browseable = yes
-   writeable = yes
+   writeable = {{ has "config" .read_only_shares | ternary "no" "yes" }}
    path = /homeassistant
 
    valid users = {{ .username }}
@@ -56,7 +56,7 @@
 {{ if or (has "local_apps" .enabled_shares) (has "addons" .enabled_shares) }}
 [local_apps]
    browseable = yes
-   writeable = yes
+   writeable = {{ (or (has "local_apps" .read_only_shares) (has "addons" .read_only_shares)) | ternary "no" "yes" }}
    path = /local_apps
 
    valid users = {{ .username }}
@@ -69,7 +69,7 @@
 {{ if or (has "local_apps" .enabled_shares) (has "addons" .enabled_shares) }}
 [addons]
    browseable = yes
-   writeable = yes
+   writeable = {{ (or (has "local_apps" .read_only_shares) (has "addons" .read_only_shares)) | ternary "no" "yes" }}
    path = /local_apps
    preexec = /usr/bin/logger -s -t smbd -p local0.warning "%u connected to deprecated share %S from %m (%I), please switch to the local_apps share"
 
@@ -83,7 +83,7 @@
 {{ if or (has "app_configs" .enabled_shares) (has "addon_configs" .enabled_shares) }}
 [app_configs]
    browseable = yes
-   writeable = yes
+   writeable = {{ (or (has "app_configs" .read_only_shares) (has "addon_configs" .read_only_shares)) | ternary "no" "yes" }}
    path = /app_configs
 
    valid users = {{ .username }}
@@ -96,7 +96,7 @@
 {{ if or (has "app_configs" .enabled_shares) (has "addon_configs" .enabled_shares) }}
 [addon_configs]
    browseable = yes
-   writeable = yes
+   writeable = {{ (or (has "app_configs" .read_only_shares) (has "addon_configs" .read_only_shares)) | ternary "no" "yes" }}
    path = /app_configs
    preexec = /usr/bin/logger -s -t smbd -p local0.warning "%u connected to deprecated share %S from %m (%I), please switch to the app_configs share"
 
@@ -110,7 +110,7 @@
 {{ if (has "ssl" .enabled_shares) }}
 [ssl]
    browseable = yes
-   writeable = yes
+   writeable = {{ has "ssl" .read_only_shares | ternary "no" "yes" }}
    path = /ssl
 
    valid users = {{ .username }}
@@ -123,7 +123,7 @@
 {{ if (has "share" .enabled_shares) }}
 [share]
    browseable = yes
-   writeable = yes
+   writeable = {{ has "share" .read_only_shares | ternary "no" "yes" }}
    path = /share
 
    valid users = {{ .username }}
@@ -136,7 +136,7 @@
 {{ if (has "backup" .enabled_shares) }}
 [backup]
    browseable = yes
-   writeable = yes
+   writeable = {{ has "backup" .read_only_shares | ternary "no" "yes" }}
    path = /backup
 
    valid users = {{ .username }}
@@ -150,7 +150,7 @@
 {{ if (has "media" .enabled_shares) }}
 [media]
    browseable = yes
-   writeable = yes
+   writeable = {{ has "media" .read_only_shares | ternary "no" "yes" }}
    path = /media
 
    valid users = {{ .username }}

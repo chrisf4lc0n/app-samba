@@ -83,6 +83,7 @@ jq --arg username "${samba_username}" \
     --argjson interfaces "$(jq -c -n '$ARGS.positional' --args -- "${interfaces[@]}")" \
     '.interfaces = $interfaces |
     .enabled_shares.[] |= ascii_downcase |
+    .read_only_shares = ((.read_only_shares // []) | map(ascii_downcase) | unique) |
     .username = $username' /data/options.json \
     | tempio \
       -template /usr/share/tempio/smb.gtpl \
