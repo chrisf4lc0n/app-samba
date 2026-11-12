@@ -1,3 +1,4 @@
 ---
-addons:
-  - samba
+name: app-samba read-only test fork
+url: https://github.com/chrisf4lc0n/app-samba
+maintainer: chrisf4lc0n

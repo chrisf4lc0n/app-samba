@@ -9,7 +9,6 @@ arch:
   - amd64
 hassio_api: true
 host_network: true
-image: ghcr.io/home-assistant/app-samba
 init: false
 log_format: timestamp
 map:
